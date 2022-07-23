@@ -1,8 +1,8 @@
 package cz.hajma.videoplayer.viewmodels
 
 import androidx.lifecycle.ViewModel
-import cz.hajma.videoprehravac.data.dto.VideoListDto
+import cz.hajma.videoprehravac.domain.dto.VideoItem
 
-class VideoListItemViewModel(val dto : VideoListDto) : ViewModel() {
-    var lengthText : String = dto.length.toString() + " s"
+class VideoListItemViewModel(val dto : VideoItem) : ViewModel() {
+    var lengthText : String = dto.storedContent?.duration.toString() + " s"
 }

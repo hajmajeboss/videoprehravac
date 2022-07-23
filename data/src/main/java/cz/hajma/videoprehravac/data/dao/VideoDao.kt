@@ -3,7 +3,7 @@ package cz.hajma.videoprehravac.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import cz.hajma.videoprehravac.data.entities.Video
+import cz.hajma.videoprehravac.data.entities.VideoEntity
 
 /**
  * Video data access object.
@@ -12,8 +12,8 @@ import cz.hajma.videoprehravac.data.entities.Video
 interface VideoDao {
 
     @Insert
-    fun insertAll(vararg videos : Video)
+    fun insertAll(vararg videos : VideoEntity)
 
-    @Query("select * from video")
-    fun getLastList() : List<Video>
+    @Query("select * from videoentity")
+    fun getLastList() : List<VideoEntity>
 }
