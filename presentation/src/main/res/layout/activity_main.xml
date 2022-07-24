@@ -37,8 +37,7 @@
                 app:menu="@menu/menu_main"
                 app:navigationIcon="@drawable/video_vintage"
                 app:popupTheme="@style/Theme.VideoPlayer.PopupOverlay"
-                app:title="HajmaTube"
-                app:titleTextColor="@android:color/holo_red_light" />
+                app:title="HajmaTube" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -59,11 +58,13 @@
                         android:layout_height="match_parent">
 
                         <SearchView
+                            android:id="@+id/search_box"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:maxWidth="180dp"
                             android:queryHint="Search video"
-                            android:theme="@style/Theme.AppCompat.NoActionBar" />
+                            android:theme="@style/Theme.AppCompat.NoActionBar"
+                            app:query="@{viewModel.searchQuery}"/>
 
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="wrap_content"
@@ -75,11 +76,11 @@
                             tools:layout_editor_absoluteY="112dp">
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chip4"
+                                android:id="@+id/drmChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="true"
+                                android:checked="@={viewModel.drmActive}"
                                 android:text="DRM"
                                 app:checkedIconVisible="true"
                                 app:closeIconVisible="false"
@@ -89,11 +90,11 @@
                                 tools:layout_editor_absoluteY="112dp" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chip5"
+                                android:id="@+id/mp4Chip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="true"
+                                android:checked="@={viewModel.mp4Active}"
                                 android:text="MP4"
                                 app:checkedIconVisible="true"
                                 tools:layout_conversion_absoluteHeight="48dp"
@@ -102,11 +103,11 @@
                                 tools:layout_editor_absoluteY="112dp" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chip6"
+                                android:id="@+id/hlsChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="true"
+                                android:checked="@={viewModel.hlsActive}"
                                 android:text="HLS"
                                 app:checkedIconVisible="true"
                                 tools:layout_conversion_absoluteHeight="48dp"
@@ -115,11 +116,11 @@
                                 tools:layout_editor_absoluteY="112dp" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chip7"
+                                android:id="@+id/dashChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="true"
+                                android:checked="@={viewModel.dashActive}"
                                 android:text="Dash"
                                 app:checkedIconVisible="true"
                                 tools:layout_conversion_absoluteHeight="48dp"
@@ -128,11 +129,11 @@
                                 tools:layout_editor_absoluteY="112dp" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chip8"
+                                android:id="@+id/webmChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="true"
+                                android:checked="@={viewModel.webmActive}"
                                 android:text="WebM"
                                 app:checkedIconVisible="true"
                                 tools:layout_conversion_absoluteHeight="48dp"
