@@ -21,7 +21,7 @@ class AppDatabaseModule {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java, "database-name"
-        ).build()
+        ).allowMainThreadQueries().build()
     }
 }
 

@@ -24,7 +24,6 @@ class MainViewModel @Inject constructor(val getVideoUseCase : GetVideoListUseCas
     private fun loadData() {
         // This is a coroutine scope with the lifecycle of the ViewModel
         viewModelScope.launch {
-
             _data.postValue(getVideoUseCase.invoke()?.toList()?.map { video -> VideoListItemViewModel(video) })
         }
     }

@@ -22,7 +22,9 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="4dp"
             android:theme="@style/Theme.VideoPlayer.AppBarOverlay"
+            app:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -32,9 +34,116 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:navigationIcon="?android:attr/listChoiceIndicatorSingle"
+                app:menu="@menu/menu_main"
+                app:navigationIcon="@drawable/video_vintage"
                 app:popupTheme="@style/Theme.VideoPlayer.PopupOverlay"
-                app:title="Videopřehrávač" />
+                app:title="HajmaTube"
+                app:titleTextColor="@android:color/holo_red_light" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <SearchView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="180dp"
+                            android:queryHint="Search video"
+                            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleLine="true"
+                            tools:layout_conversion_absoluteHeight="48dp"
+                            tools:layout_conversion_absoluteWidth="395dp"
+                            tools:layout_editor_absoluteX="8dp"
+                            tools:layout_editor_absoluteY="112dp">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:checked="true"
+                                android:text="DRM"
+                                app:checkedIconVisible="true"
+                                app:closeIconVisible="false"
+                                tools:layout_conversion_absoluteHeight="48dp"
+                                tools:layout_conversion_absoluteWidth="54dp"
+                                tools:layout_editor_absoluteX="8dp"
+                                tools:layout_editor_absoluteY="112dp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:checked="true"
+                                android:text="MP4"
+                                app:checkedIconVisible="true"
+                                tools:layout_conversion_absoluteHeight="48dp"
+                                tools:layout_conversion_absoluteWidth="53dp"
+                                tools:layout_editor_absoluteX="70dp"
+                                tools:layout_editor_absoluteY="112dp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:checked="true"
+                                android:text="HLS"
+                                app:checkedIconVisible="true"
+                                tools:layout_conversion_absoluteHeight="48dp"
+                                tools:layout_conversion_absoluteWidth="50dp"
+                                tools:layout_editor_absoluteX="131dp"
+                                tools:layout_editor_absoluteY="112dp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:checked="true"
+                                android:text="Dash"
+                                app:checkedIconVisible="true"
+                                tools:layout_conversion_absoluteHeight="48dp"
+                                tools:layout_conversion_absoluteWidth="57dp"
+                                tools:layout_editor_absoluteX="189dp"
+                                tools:layout_editor_absoluteY="112dp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:checked="true"
+                                android:text="WebM"
+                                app:checkedIconVisible="true"
+                                tools:layout_conversion_absoluteHeight="48dp"
+                                tools:layout_conversion_absoluteWidth="64dp"
+                                tools:layout_editor_absoluteX="254dp"
+                                tools:layout_editor_absoluteY="112dp" />
+                        </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
