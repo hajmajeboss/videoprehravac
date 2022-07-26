@@ -26,6 +26,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         video.setPlayer(player)
         player?.setMediaItem(MediaItem.fromUri((Uri.parse(uri))))
         player?.prepare()
+        player?.play()
     }
 
     override fun onPause() {
