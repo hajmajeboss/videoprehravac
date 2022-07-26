@@ -35,7 +35,6 @@ class VideoRepository @Inject constructor(private val database : AppDatabase, pr
             return list
         }
         catch (e : Exception) {
-            throw e;
             try {
                 val dbList = database.videoDao().getList().lastOrNull()
                 if (dbList != null) {
