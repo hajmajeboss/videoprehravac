@@ -30,10 +30,12 @@ class VideoRepository @Inject constructor(private val database : AppDatabase, pr
         try {
             val api = videoService.getClient()?.create(VideoServiceInterface::class.java)
             var list = api?.getList()
+            database.videoDao().deleteAll()
             database.videoDao().insertAll(VideoEntity(1, jsonAdapter.toJson(list), Date().time))
             return list
         }
         catch (e : Exception) {
+            throw e;
             try {
                 val dbList = database.videoDao().getList().lastOrNull()
                 if (dbList != null) {

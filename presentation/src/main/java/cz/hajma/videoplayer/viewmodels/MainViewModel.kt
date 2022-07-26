@@ -1,10 +1,12 @@
 package cz.hajma.videoplayer.viewmodels
 
 import androidx.lifecycle.*
-import cz.hajma.videoplayer.R
 import cz.hajma.videoprehravac.domain.dto.Filter
+import cz.hajma.videoprehravac.domain.dto.VideoItem
+import cz.hajma.videoprehravac.domain.enums.SortOrder
 import cz.hajma.videoprehravac.domain.useCases.FilterUseCase
 import cz.hajma.videoprehravac.domain.useCases.GetVideoListUseCase
+import cz.hajma.videoprehravac.domain.useCases.SortUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,38 +16,44 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val getVideoUseCase: GetVideoListUseCase
+    val getVideoUseCase: GetVideoListUseCase,
+    val filterUseCase : FilterUseCase,
+    var sortUseCase: SortUseCase
     ) : ViewModel() {
 
-    var videoListUnfiltered : List<VideoListItemViewModel> = listOf()
+    var videoListUnfiltered: List<VideoItem> = listOf()
 
     val videoList: LiveData<List<VideoListItemViewModel>>
         get() = _data
     private var _data = MutableLiveData<List<VideoListItemViewModel>>(emptyList())
 
-    val searchQuery : MutableLiveData<String>
+    val searchQuery: MutableLiveData<String>
         get() = _searchQuery
     private var _searchQuery = MutableLiveData<String>()
 
-    val drmActive : MutableLiveData<Boolean>
+    val drmActive: MutableLiveData<Boolean>
         get() = _drmActive
-    private var _drmActive = MutableLiveData<Boolean>(true)
+    private var _drmActive = MutableLiveData<Boolean>(false)
 
-    val mp4Active : MutableLiveData<Boolean>
-        get() = _mp4Active
-    private var _mp4Active = MutableLiveData<Boolean>(true)
+    val sdActive: MutableLiveData<Boolean>
+        get() = _sdActive
+    private var _sdActive = MutableLiveData<Boolean>(true)
 
-    val hlsActive : MutableLiveData<Boolean>
-        get() = _hlsActive
-    private var _hlsActive = MutableLiveData<Boolean>(true)
+    val hdActive: MutableLiveData<Boolean>
+        get() = _hdActive
+    private var _hdActive = MutableLiveData<Boolean>(true)
 
-    val dashActive : MutableLiveData<Boolean>
-        get() = _dashActive
-    private var _dashActive = MutableLiveData<Boolean>(true)
+    val uhdActive: MutableLiveData<Boolean>
+        get() = _uhdActive
+    private var _uhdActive = MutableLiveData<Boolean>(true)
 
-    val webmActive : MutableLiveData<Boolean>
-        get() = _webmActive
-    private var _webmActive = MutableLiveData<Boolean>(true)
+    val liveActive: MutableLiveData<Boolean>
+        get() = _liveActive
+    private var _liveActive = MutableLiveData<Boolean>(false)
+
+    val subtitlesActive: MutableLiveData<Boolean>
+        get() = _subtitlesActive
+    private var _subtitlesActive = MutableLiveData<Boolean>(true)
 
     // MediatorLiveData object
     // Can`t make it work at the moment.
@@ -53,7 +61,10 @@ class MainViewModel @Inject constructor(
         get() = _chipsMediator
     private var _chipsMediator = MediatorLiveData<Filter>()*/
 
-    var filter : Filter = Filter(query = null, drm = true, mp4 = true, hls = true, dash = true, webM = true)
+    var filter: Filter =
+        Filter(query = null, drm = false, sd = true, hd = true, uhd = true, live = false, subtitles = true)
+
+    var sortOrder : SortOrder = SortOrder.DATE_DESC
 
     init {
         loadData()
@@ -86,35 +97,29 @@ class MainViewModel @Inject constructor(
      * Loads data from the internet or from the database.
      */
     private fun loadData() {
-        // Coroutine scope with the lifecycle of the ViewModel
         viewModelScope.launch {
-            var res = getVideoUseCase.invoke()?.toList()?.map { video -> VideoListItemViewModel(video) }
+            var res = getVideoUseCase.invoke()?.toList()
             if (res != null) {
                 videoListUnfiltered = res
             }
-            _data.postValue(videoListUnfiltered)
+           filterData(filter)
         }
     }
 
     /**
      * Filters data based on Filter object properties.
      */
-    fun filterData(filter : Filter?) {
-        if (filter != null) {
-            var filteredData = videoListUnfiltered
-            if (filter.query != null && !filter.query.isNullOrEmpty()) {
-                filteredData = filteredData.filter {
-                    it.dto.name?.lowercase()?.contains(filter.query?.lowercase()!!) == true
-                }
-            }
-            if (!filter.drm)
-                filteredData = filteredData.filter {
-                    it.dto.licenseServers == null || (it.dto.licenseServers?.comMicrosoftPlayready == null
-                            && it.dto.licenseServers?.comWidevineAlpha == null
-                            && it.dto.licenseServers?.orgW3Clearkey == null)
-                }
-
-            _data.postValue(filteredData)
-        }
+    fun filterData(filter: Filter?) {
+        var dataFiltered = sortUseCase.invoke(filterUseCase.invoke(videoListUnfiltered, filter), sortOrder)
+        _data.postValue(dataFiltered.map { video -> VideoListItemViewModel(video) })
     }
+
+    /**
+     * Sorts data based on parameter.
+     */
+    fun sortData(order : SortOrder) {
+        sortOrder = order
+        filterData(filter);
+    }
+
 }

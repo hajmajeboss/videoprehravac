@@ -1,13 +1,17 @@
 package cz.hajma.videoplayer.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import cz.hajma.videoplayer.R
 import cz.hajma.videoplayer.databinding.ActivityMainBinding
 import cz.hajma.videoplayer.viewmodels.MainViewModel
+import cz.hajma.videoprehravac.domain.enums.SortOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -25,6 +29,9 @@ class MainActivity() : AppCompatActivity(), SearchView.OnQueryTextListener {
         binding.viewModel = viewModel
         setContentView(binding.root)
 
+        var toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         // Using MediatorLiveData for observing filter changes would be better,
         // but I can`t make it work right now.
         /*viewModel.chipsMediator.observe(this, Observer {
@@ -36,26 +43,31 @@ class MainActivity() : AppCompatActivity(), SearchView.OnQueryTextListener {
             viewModel.filterData(viewModel.filter)
         })
 
-        viewModel.mp4Active.observe(this, Observer {
-            viewModel.filter.mp4 = it
+        viewModel.sdActive.observe(this, Observer {
+            viewModel.filter.sd = it
             viewModel.filterData(viewModel.filter)
 
         })
 
-        viewModel.hlsActive.observe(this, Observer {
-            viewModel.filter.hls = it
+        viewModel.hdActive.observe(this, Observer {
+            viewModel.filter.hd = it
             viewModel.filterData(viewModel.filter)
 
         })
 
-        viewModel.dashActive.observe(this, Observer {
-            viewModel.filter.dash = it
+        viewModel.uhdActive.observe(this, Observer {
+            viewModel.filter.uhd = it
             viewModel.filterData(viewModel.filter)
 
         })
 
-        viewModel.webmActive.observe(this, Observer {
-            viewModel.filter.webM = it
+        viewModel.liveActive.observe(this, Observer {
+            viewModel.filter.live = it
+            viewModel.filterData(viewModel.filter)
+        })
+
+        viewModel.subtitlesActive.observe(this, Observer {
+            viewModel.filter.subtitles = it
             viewModel.filterData(viewModel.filter)
         })
 
@@ -82,5 +94,19 @@ class MainActivity() : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextChange(newText: String?): Boolean {
         viewModel.searchQuery.postValue(newText)
         return true;
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_sort_abc -> viewModel.sortData(SortOrder.ALPHABETICAL)
+            R.id.action_sort_date_desc -> viewModel.sortData(SortOrder.DATE_DESC)
+            R.id.action_sort_date_asc -> viewModel.sortData(SortOrder.DATE_ASC)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

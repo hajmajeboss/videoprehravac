@@ -16,4 +16,7 @@ interface VideoDao {
 
     @Query("select * from videoentity")
     fun getList() : List<VideoEntity>
+
+    @Query("delete from videoentity")
+    fun deleteAll()
 }

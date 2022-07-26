@@ -34,7 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:menu="@menu/menu_main"
                 app:navigationIcon="@drawable/video_vintage"
                 app:popupTheme="@style/Theme.VideoPlayer.PopupOverlay"
                 app:title="HajmaTube" />
@@ -69,11 +68,7 @@
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:singleLine="true"
-                            tools:layout_conversion_absoluteHeight="48dp"
-                            tools:layout_conversion_absoluteWidth="395dp"
-                            tools:layout_editor_absoluteX="8dp"
-                            tools:layout_editor_absoluteY="112dp">
+                            app:singleLine="true">
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/drmChip"
@@ -83,63 +78,53 @@
                                 android:checked="@={viewModel.drmActive}"
                                 android:text="DRM"
                                 app:checkedIconVisible="true"
-                                app:closeIconVisible="false"
-                                tools:layout_conversion_absoluteHeight="48dp"
-                                tools:layout_conversion_absoluteWidth="54dp"
-                                tools:layout_editor_absoluteX="8dp"
-                                tools:layout_editor_absoluteY="112dp" />
+                                app:closeIconVisible="false" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/mp4Chip"
+                                android:id="@+id/sdChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="@={viewModel.mp4Active}"
-                                android:text="MP4"
-                                app:checkedIconVisible="true"
-                                tools:layout_conversion_absoluteHeight="48dp"
-                                tools:layout_conversion_absoluteWidth="53dp"
-                                tools:layout_editor_absoluteX="70dp"
-                                tools:layout_editor_absoluteY="112dp" />
+                                android:checked="@={viewModel.sdActive}"
+                                android:text="SD"
+                                app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/hlsChip"
+                                android:id="@+id/hdChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="@={viewModel.hlsActive}"
-                                android:text="HLS"
-                                app:checkedIconVisible="true"
-                                tools:layout_conversion_absoluteHeight="48dp"
-                                tools:layout_conversion_absoluteWidth="50dp"
-                                tools:layout_editor_absoluteX="131dp"
-                                tools:layout_editor_absoluteY="112dp" />
+                                android:checked="@={viewModel.hdActive}"
+                                android:text="HD"
+                                app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/dashChip"
+                                android:id="@+id/uhdChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="@={viewModel.dashActive}"
-                                android:text="Dash"
-                                app:checkedIconVisible="true"
-                                tools:layout_conversion_absoluteHeight="48dp"
-                                tools:layout_conversion_absoluteWidth="57dp"
-                                tools:layout_editor_absoluteX="189dp"
-                                tools:layout_editor_absoluteY="112dp" />
+                                android:checked="@={viewModel.uhdActive}"
+                                android:text="4K"
+                                app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/webmChip"
+                                android:id="@+id/liveChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
-                                android:checked="@={viewModel.webmActive}"
-                                android:text="WebM"
+                                android:checked="@={viewModel.liveActive}"
+                                android:text="Live only"
+                                app:checkedIconVisible="true" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/subtitlesChip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Subtitles"
+                                android:checkable="true"
+                                android:checked="@={viewModel.subtitlesActive}"
                                 app:checkedIconVisible="true"
-                                tools:layout_conversion_absoluteHeight="48dp"
-                                tools:layout_conversion_absoluteWidth="64dp"
-                                tools:layout_editor_absoluteX="254dp"
-                                tools:layout_editor_absoluteY="112dp" />
+                                />
                         </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
                 </HorizontalScrollView>

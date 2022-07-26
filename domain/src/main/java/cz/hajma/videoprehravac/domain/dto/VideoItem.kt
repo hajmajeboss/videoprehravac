@@ -1,6 +1,7 @@
 package cz.hajma.videoprehravac.domain.dto
 
 import com.squareup.moshi.JsonClass
+import cz.hajma.videoprehravac.domain.enums.Feature
 
 @JsonClass(generateAdapter = true)
 data class VideoItem(
@@ -12,7 +13,7 @@ data class VideoItem(
     val drm: List<String>?,
     val extraConfig: ExtraConfig?,
     val extraText: List<ExtraText>?,
-    val features: List<String>?,
+    val features: List<Feature>?,
     val focus: Boolean?,
     val iconUri: String?,
     val imaAssetKey: String?,
