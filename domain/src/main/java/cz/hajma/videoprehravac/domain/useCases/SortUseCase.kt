@@ -13,7 +13,7 @@ class SortUseCase @Inject constructor() {
      */
     fun invoke(listUnsorted : List<VideoItem>, order : SortOrder) : List<VideoItem> {
         return when(order) {
-            SortOrder.ALPHABETICAL -> listUnsorted.sortedBy { x -> x.name }
+            SortOrder.ALPHABETICAL -> listUnsorted.sortedBy { x -> x.name?.replace(Regex("[^0-9a-zA-Z:,]+"), "")}
             SortOrder.DATE_ASC -> listUnsorted.asReversed()
             SortOrder.DATE_DESC -> listUnsorted
         }

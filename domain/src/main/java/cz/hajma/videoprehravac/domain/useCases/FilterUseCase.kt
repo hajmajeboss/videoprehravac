@@ -18,7 +18,7 @@ class FilterUseCase @Inject constructor() {
             var filteredData = videoListUnfiltered
             if (filter.query != null && !filter.query.isNullOrEmpty()) {
                 filteredData = filteredData.filter {
-                    it.name?.lowercase()?.contains(filter.query?.lowercase()!!) == true
+                    it.name?.lowercase()?.replace(" ", "")?.contains(filter.query?.lowercase()!!) == true
                 }
             }
             if (!filter.drm) {
@@ -33,13 +33,13 @@ class FilterUseCase @Inject constructor() {
                 }
             }
             if (!filter.hd) {
-                filteredData = filteredData.filter {
-                    it.features?.contains(Feature.DEMO_HIGH_DEFINITION) == false
+                filteredData = filteredData.filterNot {
+                    it.features?.contains(Feature.DEMO_HIGH_DEFINITION) == true
                 }
             }
             if (!filter.uhd) {
-                filteredData = filteredData.filter {
-                    it.features?.contains(Feature.DEMO_ULTRA_HIGH_DEFINITION) == false
+                filteredData = filteredData.filterNot {
+                    it.features?.contains(Feature.DEMO_ULTRA_HIGH_DEFINITION) == true
                 }
             }
             if (filter.live) {
@@ -48,8 +48,8 @@ class FilterUseCase @Inject constructor() {
                 }
             }
             if (!filter.subtitles) {
-                filteredData = filteredData.filter {
-                    it.features?.contains(Feature.DEMO_SUBTITLES) == false
+                filteredData = filteredData.filterNot {
+                    it.features?.contains(Feature.DEMO_SUBTITLES) == true
                 }
             }
             return filteredData
