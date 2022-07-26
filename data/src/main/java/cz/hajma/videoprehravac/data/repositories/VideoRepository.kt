@@ -13,8 +13,15 @@ import java.util.*
 
 import javax.inject.Inject
 
+/**
+ * Repository for Video entity
+ */
 class VideoRepository @Inject constructor(private val database : AppDatabase, private val videoService : VideoService) :
     IVideoRepository {
+
+    /**
+     * Returns a list of videos from network or from database in case of network failure or missing internet connection.
+     */
     suspend override fun getVideos() : List<VideoItem>? {
         val moshi = Moshi.Builder().add(MoshiArrayListAdapter()).build()
         val listMyData = Types.newParameterizedType(List::class.java, VideoItem::class.java)
@@ -28,7 +35,7 @@ class VideoRepository @Inject constructor(private val database : AppDatabase, pr
         }
         catch (e : Exception) {
             try {
-                val dbList = database.videoDao().getLastList().firstOrNull()
+                val dbList = database.videoDao().getList().lastOrNull()
                 if (dbList != null) {
                     return jsonAdapter.fromJson(dbList.data.toString());
                 }

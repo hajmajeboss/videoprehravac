@@ -5,6 +5,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
+/**
+ * Binding adapter used to bind ImageURI to ImageView and load it using Glide.
+ */
 @BindingAdapter("imageUri")
 fun loadImage(view: View,
               imageUrl: String?) {

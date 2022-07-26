@@ -1,6 +1,5 @@
 package cz.hajma.videoprehravac.data.network.interfaces
 
-import cz.hajma.videoprehravac.domain.dto.Video
 import cz.hajma.videoprehravac.domain.dto.VideoItem
 import retrofit2.http.GET
 

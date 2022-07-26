@@ -5,6 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import cz.hajma.videoplayer.viewmodels.VideoListItemViewModel
 
+/**
+ * Adapter used for binding itemViewModels to a RecyclerView.
+ */
 @BindingAdapter("itemViewModels")
 fun bindItemViewModels(recyclerView: RecyclerView, itemViewModels: LiveData<List<VideoListItemViewModel>>?) {
     val adapter = getOrCreateAdapter(recyclerView)

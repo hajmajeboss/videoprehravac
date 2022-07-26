@@ -1,18 +1,19 @@
 package cz.hajma.videoplayer.activities
 
 import android.os.Bundle
-import android.widget.MediaController
 import android.widget.SearchView
-import android.widget.VideoView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.google.android.material.chip.Chip
 import cz.hajma.videoplayer.R
 import cz.hajma.videoplayer.databinding.ActivityMainBinding
 import cz.hajma.videoplayer.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * App`s main activity. Shows a list of videos loaded from the internet or from the database if connection is unavailable.
+ * Should be a fragment with navigation (androidx.navigation:navigation)
+ */
 @AndroidEntryPoint
 class MainActivity() : AppCompatActivity(), SearchView.OnQueryTextListener {
     private val viewModel : MainViewModel by viewModels()
@@ -24,6 +25,8 @@ class MainActivity() : AppCompatActivity(), SearchView.OnQueryTextListener {
         binding.viewModel = viewModel
         setContentView(binding.root)
 
+        // Using MediatorLiveData for observing filter changes would be better,
+        // but I can`t make it work right now.
         /*viewModel.chipsMediator.observe(this, Observer {
             viewModel.filterData(viewModel.chipsMediator.value)
         })*/
@@ -56,6 +59,7 @@ class MainActivity() : AppCompatActivity(), SearchView.OnQueryTextListener {
             viewModel.filterData(viewModel.filter)
         })
 
+        // Custom binding adapter could be used here
         var searchbox = findViewById<SearchView>(R.id.search_box)
         searchbox.setOnQueryTextListener(this)
 

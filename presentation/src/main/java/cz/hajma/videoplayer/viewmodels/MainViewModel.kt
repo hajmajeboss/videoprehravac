@@ -9,11 +9,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for MainActivity.
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val getVideoUseCase: GetVideoListUseCase,
-    val filterUseCase: FilterUseCase,
-) : ViewModel() {
+    val getVideoUseCase: GetVideoListUseCase
+    ) : ViewModel() {
 
     var videoListUnfiltered : List<VideoListItemViewModel> = listOf()
 
@@ -45,16 +47,20 @@ class MainViewModel @Inject constructor(
         get() = _webmActive
     private var _webmActive = MutableLiveData<Boolean>(true)
 
-    val chipsMediator : MediatorLiveData<Filter>
+    // MediatorLiveData object
+    // Can`t make it work at the moment.
+    /*val chipsMediator : MediatorLiveData<Filter>
         get() = _chipsMediator
-    private var _chipsMediator = MediatorLiveData<Filter>()
+    private var _chipsMediator = MediatorLiveData<Filter>()*/
 
     var filter : Filter = Filter(query = null, drm = true, mp4 = true, hls = true, dash = true, webM = true)
 
     init {
         loadData()
 
-    /*    chipsMediator.addSource(drmActive) {
+        // MediatorLiveData sources
+        // Can`t make it work at the moment.
+        /*chipsMediator.addSource(drmActive) {
             chipsMediator.value?.drm = it
         }
 
@@ -76,8 +82,11 @@ class MainViewModel @Inject constructor(
         */
     }
 
+    /**
+     * Loads data from the internet or from the database.
+     */
     private fun loadData() {
-        // This is a coroutine scope with the lifecycle of the ViewModel
+        // Coroutine scope with the lifecycle of the ViewModel
         viewModelScope.launch {
             var res = getVideoUseCase.invoke()?.toList()?.map { video -> VideoListItemViewModel(video) }
             if (res != null) {
@@ -85,10 +94,11 @@ class MainViewModel @Inject constructor(
             }
             _data.postValue(videoListUnfiltered)
         }
-
-        _drmActive.postValue(true)
     }
 
+    /**
+     * Filters data based on Filter object properties.
+     */
     fun filterData(filter : Filter?) {
         if (filter != null) {
             var filteredData = videoListUnfiltered

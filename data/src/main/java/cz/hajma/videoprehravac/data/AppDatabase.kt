@@ -10,5 +10,8 @@ import cz.hajma.videoprehravac.data.entities.VideoEntity
  */
 @Database(entities = [VideoEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
+    /**
+     * Returns Video Data Access Object.
+     */
     abstract fun videoDao(): VideoDao
 }

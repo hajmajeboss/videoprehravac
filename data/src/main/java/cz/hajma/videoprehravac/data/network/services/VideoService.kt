@@ -9,6 +9,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class VideoService {
     private var retrofit : Retrofit? = null
 
+    /**
+     * Returns a Retrofit Video REST API service client.
+     * You need to call .create on the returned Retrofit object.
+     */
     fun getClient() : Retrofit? {
         retrofit = Retrofit.Builder()
             .baseUrl("https://gist.githubusercontent.com/")

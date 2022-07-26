@@ -15,5 +15,5 @@ interface VideoDao {
     fun insertAll(vararg videos : VideoEntity)
 
     @Query("select * from videoentity")
-    fun getLastList() : List<VideoEntity>
+    fun getList() : List<VideoEntity>
 }

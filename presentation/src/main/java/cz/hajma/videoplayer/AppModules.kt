@@ -12,6 +12,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 
+/**
+ * Dependency injection of interfaces or abstract classes is done here.
+ */
+
 @Module
 @InstallIn(dagger.hilt.components.SingletonComponent::class)
 class AppDatabaseModule {
@@ -38,7 +42,6 @@ class VideoServiceModule {
 @Module
 @InstallIn(dagger.hilt.components.SingletonComponent::class)
 abstract class VideoRepositoryModule {
-
     @Binds
     abstract fun bindAnalyticsService(
         videoRepositoryImpl: VideoRepository
