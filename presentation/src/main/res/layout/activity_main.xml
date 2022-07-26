@@ -70,16 +70,6 @@
                             app:singleLine="true">
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/drmChip"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:checkable="true"
-                                android:checked="@={viewModel.drmActive}"
-                                android:text="@string/drm"
-                                app:checkedIconVisible="true"
-                                app:closeIconVisible="false" />
-
-                            <com.google.android.material.chip.Chip
                                 android:id="@+id/sdChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -114,6 +104,16 @@
                                 android:checked="@={viewModel.liveActive}"
                                 android:text="@string/live_only"
                                 app:checkedIconVisible="true" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/drmChip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:checked="@={viewModel.drmActive}"
+                                android:text="@string/drm"
+                                app:checkedIconVisible="true"
+                                app:closeIconVisible="false" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/subtitlesChip"

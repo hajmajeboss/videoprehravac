@@ -2,6 +2,7 @@ package cz.hajma.videoprehravac.domain.useCases
 
 import cz.hajma.videoprehravac.domain.dto.Filter
 import cz.hajma.videoprehravac.domain.dto.VideoItem
+import cz.hajma.videoprehravac.domain.enums.DrmEnum
 import cz.hajma.videoprehravac.domain.enums.Feature
 import javax.inject.Inject
 
@@ -22,9 +23,7 @@ class FilterUseCase @Inject constructor() {
             }
             if (!filter.drm) {
                 filteredData = filteredData.filter {
-                    it.licenseServers == null || (it.licenseServers.comMicrosoftPlayready == null
-                            && it.licenseServers.comWidevineAlpha == null
-                            && it.licenseServers.orgW3Clearkey == null)
+                    it.drm?.contains(DrmEnum.DEMO_CLEAR) == true
                 }
             }
             if (!filter.sd) {
