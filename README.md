@@ -1,5 +1,5 @@
 # Videoplayer Android/Kotlin example
-Frameworks used: Room, Retrofit, Hilt, Glide, Exoplayer, Moshi JSON
+Frameworks used: Room, Retrofit, Hilt, Glide, Exoplayer, Moshi JSON, Arrow Core
 
 Architecture:
 - Presentation layer: Views (layout XMLs, activities, fragments), ViewModels (LiveData)
