@@ -16,9 +16,11 @@ class FilterUseCase @Inject constructor() {
     fun invoke(videoListUnfiltered : List<VideoItem>, filter : Filter?) : List<VideoItem> {
         if (filter != null) {
             var filteredData = videoListUnfiltered
-            if (filter.query != null && !filter.query.isNullOrEmpty()) {
+            // Local variable with smart cast needed to avoid using "!!"
+            val query = filter.query?.lowercase()
+            if (query != null && !query.isNullOrEmpty()) {
                 filteredData = filteredData.filter {
-                    it.name?.lowercase()?.replace(" ", "")?.contains(filter.query?.lowercase()!!) == true
+                    it.name?.lowercase()?.replace(" ", "")?.contains(query) == true
                 }
             }
             if (!filter.drm) {
