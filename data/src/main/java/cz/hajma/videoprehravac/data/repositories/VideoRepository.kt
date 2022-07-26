@@ -22,7 +22,7 @@ class VideoRepository @Inject constructor(private val database : AppDatabase, pr
     /**
      * Returns a list of videos from network or from database in case of network failure or missing internet connection.
      */
-    suspend override fun getVideos() : List<VideoItem>? {
+    override suspend fun getVideos(): List<VideoItem>? {
         val moshi = Moshi.Builder().add(MoshiArrayListAdapter()).build()
         val listMyData = Types.newParameterizedType(List::class.java, VideoItem::class.java)
 
@@ -33,19 +33,13 @@ class VideoRepository @Inject constructor(private val database : AppDatabase, pr
             database.videoDao().deleteAll()
             database.videoDao().insertAll(VideoEntity(1, jsonAdapter.toJson(list), Date().time))
             return list
-        }
-        catch (e : Exception) {
-            try {
-                val dbList = database.videoDao().getList().lastOrNull()
-                if (dbList != null) {
-                    return jsonAdapter.fromJson(dbList.data.toString());
-                }
-            }
-            catch (dbE : Exception) {
-                return listOf()
+        } catch (e: Exception) {
+            val dbList = database.videoDao().getList().lastOrNull()
+            if (dbList != null) {
+                return jsonAdapter.fromJson(dbList.data.toString());
             }
         }
-        return listOf()
+        return null
     }
 }
 

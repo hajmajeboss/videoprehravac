@@ -1,5 +1,6 @@
 package cz.hajma.videoplayer.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
 import cz.hajma.videoprehravac.domain.dto.Filter
 import cz.hajma.videoprehravac.domain.dto.VideoItem
@@ -69,10 +70,8 @@ class MainViewModel @Inject constructor(
      */
     private fun loadData() {
         viewModelScope.launch {
-            var res = getVideoUseCase.invoke()?.toList()
-            if (res != null) {
-                videoListUnfiltered = res
-            }
+            var res = getVideoUseCase.invoke()
+            res.fold({ Log.e("ERR", it.messages.joinToString() + it.exception?.message + it.exception?.stackTraceToString())}, {videoListUnfiltered = it})
            filterData(filter)
         }
     }
