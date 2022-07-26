@@ -6,26 +6,26 @@
     <item
         android:id="@+id/action_sort"
         android:orderInCategory="100"
-        android:title="Sort"
+        android:title="@string/sort"
         android:icon="@drawable/sort"
         app:showAsAction="always">
         <menu>
             <item
                 android:id="@+id/action_sort_abc"
                 android:orderInCategory="100"
-                android:title="In alphabetical order"
+                android:title="@string/in_alphabetical_order"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/action_sort_date_desc"
                 android:orderInCategory="100"
-                android:title="Date descending"
+                android:title="@string/date_descending"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/action_sort_date_asc"
                 android:orderInCategory="100"
-                android:title="Date ascending"
+                android:title="@string/date_ascending"
                 app:showAsAction="never" />
         </menu>
     </item>

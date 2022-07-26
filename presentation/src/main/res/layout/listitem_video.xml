@@ -17,7 +17,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/liv_preview_img"
             android:layout_width="0dp"
             android:layout_height="230dp"
             android:scaleType="centerCrop"
@@ -28,7 +28,7 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/liv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -39,10 +39,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/liv_preview_img" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/liv_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -53,18 +53,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/liv_title" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/liv_drm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/black"
             android:padding="8dp"
-            android:text="DRM - Nelze přehrát"
+            android:text="@string/drm_noplayable"
             android:textColor="@color/white"
             app:visibility="@{itemViewModel.hasDrm}"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/liv_preview_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

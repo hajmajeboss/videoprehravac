@@ -55,12 +55,6 @@ class MainViewModel @Inject constructor(
         get() = _subtitlesActive
     private var _subtitlesActive = MutableLiveData<Boolean>(true)
 
-    // MediatorLiveData object
-    // Can`t make it work at the moment.
-    /*val chipsMediator : MediatorLiveData<Filter>
-        get() = _chipsMediator
-    private var _chipsMediator = MediatorLiveData<Filter>()*/
-
     var filter: Filter =
         Filter(query = null, drm = false, sd = true, hd = true, uhd = true, live = false, subtitles = true)
 
@@ -68,29 +62,6 @@ class MainViewModel @Inject constructor(
 
     init {
         loadData()
-
-        // MediatorLiveData sources
-        // Can`t make it work at the moment.
-        /*chipsMediator.addSource(drmActive) {
-            chipsMediator.value?.drm = it
-        }
-
-        chipsMediator.addSource(mp4Active) {
-            chipsMediator.value?.mp4 = it
-        }
-
-        chipsMediator.addSource(hlsActive) {
-            chipsMediator.value?.hls = it
-        }
-
-        chipsMediator.addSource(dashActive) {
-            chipsMediator.value?.dash = it
-        }
-
-        chipsMediator.addSource(webmActive) {
-            chipsMediator.value?.webM = it
-        }
-        */
     }
 
     /**

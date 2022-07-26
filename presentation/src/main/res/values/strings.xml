@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">VideoPlayer</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="drm">DRM</string>
+    <string name="sd">SD</string>
+    <string name="hd">HD</string>
+    <string name="_4k">4K</string>
+    <string name="live_only">Live only</string>
+    <string name="subtitles">Subtitles</string>
+    <string name="hajmatube">HajmaTube</string>
+    <string name="drm_noplayable">DRM - Unplayable</string>
+    <string name="sort">Sort</string>
+    <string name="in_alphabetical_order">In alphabetical order</string>
+    <string name="date_descending">Date descending</string>
+    <string name="date_ascending">Date ascending</string>
 </resources>

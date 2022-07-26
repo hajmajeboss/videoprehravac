@@ -36,10 +36,9 @@
                 android:background="?attr/colorPrimary"
                 app:navigationIcon="@drawable/video_vintage"
                 app:popupTheme="@style/Theme.VideoPlayer.PopupOverlay"
-                app:title="HajmaTube" />
+                app:title="@string/hajmatube" />
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
@@ -63,7 +62,7 @@
                             android:maxWidth="180dp"
                             android:queryHint="Search video"
                             android:theme="@style/Theme.AppCompat.NoActionBar"
-                            app:query="@{viewModel.searchQuery}"/>
+                            app:query="@{viewModel.searchQuery}" />
 
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="wrap_content"
@@ -76,7 +75,7 @@
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
                                 android:checked="@={viewModel.drmActive}"
-                                android:text="DRM"
+                                android:text="@string/drm"
                                 app:checkedIconVisible="true"
                                 app:closeIconVisible="false" />
 
@@ -86,7 +85,7 @@
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
                                 android:checked="@={viewModel.sdActive}"
-                                android:text="SD"
+                                android:text="@string/sd"
                                 app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
@@ -95,7 +94,7 @@
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
                                 android:checked="@={viewModel.hdActive}"
-                                android:text="HD"
+                                android:text="@string/hd"
                                 app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
@@ -104,7 +103,7 @@
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
                                 android:checked="@={viewModel.uhdActive}"
-                                android:text="4K"
+                                android:text="@string/_4k"
                                 app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
@@ -113,18 +112,17 @@
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
                                 android:checked="@={viewModel.liveActive}"
-                                android:text="Live only"
+                                android:text="@string/live_only"
                                 app:checkedIconVisible="true" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/subtitlesChip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Subtitles"
                                 android:checkable="true"
                                 android:checked="@={viewModel.subtitlesActive}"
-                                app:checkedIconVisible="true"
-                                />
+                                android:text="@string/subtitles"
+                                app:checkedIconVisible="true" />
                         </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
                 </HorizontalScrollView>
